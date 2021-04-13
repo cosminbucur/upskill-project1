@@ -8,5 +8,4 @@
 
 # Maven
 log/
-*/target/
-/*/logs/
+/target/

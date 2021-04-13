@@ -1,13 +1,14 @@
 package com.sda.weather.dto;
 
 public class Location {
-    private String locationName;
 
-    public String getLocationName() {
-        return locationName;
+    private String name;
+
+    public String getName() {
+        return name;
     }
 
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
+    public void setName(String name) {
+        this.name = name;
     }
 }
