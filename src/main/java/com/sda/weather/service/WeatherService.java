@@ -74,4 +74,9 @@ public class WeatherService {
 
         return locationRepository.save(foundLocation);
     }
+
+    public Location findByCityName(String cityName) {
+        log.info("find location by city name: {}", cityName);
+        return locationRepository.findByLocationName(cityName);
+    }
 }

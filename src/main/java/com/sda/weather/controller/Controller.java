@@ -47,8 +47,12 @@ public class Controller {
 
     @GetMapping("/location")
     public ResponseEntity<List<Location>> findAllLocations() {
-        List<Location> responseBody = weatherService.findAll();
-        return ResponseEntity.ok(responseBody);
+        return ResponseEntity.ok(weatherService.findAll());
+    }
+
+    @GetMapping("/location/{cityName}")
+    public ResponseEntity<Location> findByCityName(@PathVariable String cityName) {
+        return ResponseEntity.ok(weatherService.findByCityName(cityName));
     }
 
     @PutMapping("/location/{id}")
