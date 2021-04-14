@@ -31,7 +31,7 @@ public class WeatherService {
     /*
     https://api.weatherstack.com/current?access_key=dfd5e23a0233023e0f00762809f5f327&query=New York
      */
-    public WeatherResponse getWeatherData(String location){
+    public WeatherResponse getWeatherData(String location) {
         String url = WEATHER_STACK_API + "/current" + "?access_key=" + WEATHER_STACK_API_KEY + "&query=" + location;
         WeatherResponse response = restTemplate.getForObject(url, WeatherResponse.class);
 
@@ -58,5 +58,20 @@ public class WeatherService {
     public List<Location> findAll() {
         log.info("find all locations");
         return locationRepository.findAll();
+    }
+
+    public Location update(Long id, LocationRequest updateRequest) {
+        log.info("update location: {}, with data: {}", id, updateRequest);
+
+        Location foundLocation = locationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("location not found"));
+
+        foundLocation.setLocationName(updateRequest.getLocationName());
+        foundLocation.setLatitude(updateRequest.getLatitude());
+        foundLocation.setLongitude(updateRequest.getLongitude());
+        foundLocation.setRegion(updateRequest.getRegion());
+        foundLocation.setCountryName(updateRequest.getCountryName());
+
+        return locationRepository.save(foundLocation);
     }
 }
