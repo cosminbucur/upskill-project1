@@ -11,6 +11,9 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.sda.weather.service.WeatherService.WEATHER_STACK_API;
 import static com.sda.weather.service.WeatherService.WEATHER_STACK_API_KEY;
 
@@ -45,5 +48,11 @@ public class Controller {
     @PostMapping("/location")
     public ResponseEntity<Location> saveLocation(@RequestBody @Valid LocationRequest request) {
         return ResponseEntity.ok(weatherService.save(request));
+    }
+
+    @GetMapping("/location")
+    public ResponseEntity<List<Location>> findAllLocations() {
+        List<Location> responseBody = weatherService.findAll();
+        return ResponseEntity.ok(responseBody);
     }
 }
