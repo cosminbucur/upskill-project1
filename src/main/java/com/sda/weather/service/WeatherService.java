@@ -1,6 +1,9 @@
 package com.sda.weather.service;
 
+import com.sda.weather.dto.LocationRequest;
 import com.sda.weather.dto.WeatherResponse;
+import com.sda.weather.model.Location;
+import com.sda.weather.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,10 +15,12 @@ public class WeatherService {
     public static final String WEATHER_STACK_API_KEY = "dfd5e23a0233023e0f00762809f5f327";
 
     private final RestTemplate restTemplate;
+    private final LocationRepository locationRepository;
 
     @Autowired
-    public WeatherService(RestTemplate restTemplate) {
+    public WeatherService(RestTemplate restTemplate, LocationRepository locationRepository) {
         this.restTemplate = restTemplate;
+        this.locationRepository = locationRepository;
     }
 
     /*
@@ -30,5 +35,17 @@ public class WeatherService {
         // save to DB
 
         return response;
+    }
+
+    public Location save(LocationRequest request) {
+        Location location = new Location(
+                request.getLocationName(),
+                request.getLatitude(),
+                request.getLongitude(),
+                request.getRegion(),
+                request.getCountryName()
+        );
+
+        return locationRepository.save(location);
     }
 }

@@ -1,13 +1,15 @@
 package com.sda.weather.controller;
 
+import com.sda.weather.dto.LocationRequest;
 import com.sda.weather.dto.WeatherResponse;
+import com.sda.weather.model.Location;
 import com.sda.weather.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import javax.validation.Valid;
 
 import static com.sda.weather.service.WeatherService.WEATHER_STACK_API;
 import static com.sda.weather.service.WeatherService.WEATHER_STACK_API_KEY;
@@ -35,5 +37,13 @@ public class Controller {
         // save to DB
 
         return "ok";
+    }
+
+    // controller > service > repository > db
+
+    // save location
+    @PostMapping("/location")
+    public ResponseEntity<Location> saveLocation(@RequestBody @Valid LocationRequest request) {
+        return ResponseEntity.ok(weatherService.save(request));
     }
 }
