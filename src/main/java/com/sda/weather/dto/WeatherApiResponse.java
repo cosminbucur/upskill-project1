@@ -1,15 +1,15 @@
 package com.sda.weather.dto;
 
-public class WeatherResponse {
+public class WeatherApiResponse {
 
-    private Location location;
+    private ApiLocation location;
     private Current current;
 
-    public Location getLocation() {
+    public ApiLocation getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(ApiLocation location) {
         this.location = location;
     }
 

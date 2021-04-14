@@ -10,6 +10,7 @@ public class Current {
     private String windDirection;
     @JsonProperty("wind_speed")
     private Integer windSpeed;
+    private Integer humidity;
 
     public Integer getTemperature() {
         return temperature;
@@ -41,5 +42,13 @@ public class Current {
 
     public void setWindSpeed(Integer windSpeed) {
         this.windSpeed = windSpeed;
+    }
+
+    public Integer getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(Integer humidity) {
+        this.humidity = humidity;
     }
 }

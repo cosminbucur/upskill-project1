@@ -64,4 +64,15 @@ public class LocationRequest {
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
+
+    @Override
+    public String toString() {
+        return "LocationRequest{" +
+                "locationName='" + locationName + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", region='" + region + '\'' +
+                ", countryName='" + countryName + '\'' +
+                '}';
+    }
 }
